@@ -43,16 +43,20 @@ public class SpringCloudDocumentationSwaggerMapper implements DocumentationSwagg
   public Map<String, Swagger> documentationToSwaggers(Documentation documentation) {
     Map<String, Swagger> result = new HashMap<>();
 
-    documentation.getApiListings().entries().forEach(entry -> result.put(mapSchemaId(entry.getKey()),
+    documentation.getApiListings().forEach((key, value) -> result.put(mapSchemaId(key),
         mapper.mapDocumentation(new Documentation(documentation.getGroupName(),
             documentation.getBasePath(),
             Collections.emptySet(), // ignore all tags
-            toMultiMap(entry),
+            new HashMap<String, List<ApiListing>>(1) {{
+              this.put(key, value);
+            }},
             documentation.getResourceListing(),
             toSet(documentation.getProduces()),
             toSet(documentation.getConsumes()),
             documentation.getHost(),
             toSet(documentation.getSchemes()),
+            documentation.getServers(),
+            documentation.getDocumentationReference(),
             documentation.getVendorExtensions()
         ))));
     return result;

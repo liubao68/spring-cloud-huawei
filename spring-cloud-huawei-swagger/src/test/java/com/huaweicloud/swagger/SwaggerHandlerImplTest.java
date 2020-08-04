@@ -24,8 +24,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import com.huaweicloud.servicecomb.discovery.client.ServiceCombClient;
 
 import io.swagger.models.Info;
@@ -58,12 +56,11 @@ public class SwaggerHandlerImplTest {
   @Mocked
   private DefinitionCache def;
 
-  @Injectable
-  private ApiListing apiListing;
+  private List<ApiListing> apiListing = new ArrayList<>();
 
   private ServiceCombSwaggerHandlerImpl service = new ServiceCombSwaggerHandlerImpl();
 
-  private Multimap<String, ApiListing> mockMap = HashMultimap.create();
+  private Map<String, List<ApiListing>> mockMap = new HashMap<>();
 
   private Documentation mockDoc;
 
@@ -72,7 +69,10 @@ public class SwaggerHandlerImplTest {
   private void init() {
     mockMap.put("xxxx", apiListing);
     mockDoc = new Documentation("xx", "/xx", null, mockMap,
-        null, Collections.emptySet(), Collections.emptySet(), null, Collections.emptySet(), Collections.emptyList());
+        null, Collections.emptySet(), Collections.emptySet(), null,
+        Collections.emptySet(),
+        null, null,
+        Collections.emptyList());
     mockSwagger = new Swagger();
     mockSwagger.setInfo(new Info());
     Map<String, Model> defMap = new HashMap<>();

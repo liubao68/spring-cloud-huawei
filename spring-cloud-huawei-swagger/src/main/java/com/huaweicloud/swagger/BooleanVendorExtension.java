@@ -14,32 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.huaweicloud.swagger;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
+import springfox.documentation.service.VendorExtension;
 
-import com.huaweicloud.common.schema.ServiceCombSwaggerHandler;
+public class BooleanVendorExtension implements VendorExtension<Boolean> {
+  private String name;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
+  private Boolean value;
 
-/**
- * @Author GuoYl123
- * @Date 2019/12/17
- **/
-@Configuration
-@EnableSwagger2WebMvc
-public class SwaggerConfiguration {
-
-  @Bean
-  @Lazy
-  public ServiceCombSwaggerHandler swaggerHandler() {
-    return new ServiceCombSwaggerHandlerImpl();
+  public BooleanVendorExtension(String name, Boolean value) {
+    this.name = name;
+    this.value = value;
   }
 
-  @Bean
-  public ApiModelReaderAop apiModelReaderAop() {
-    return new ApiModelReaderAop();
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public Boolean getValue() {
+    return value;
   }
 }

@@ -13,24 +13,30 @@
   <artifactId>spring-cloud-huawei-swagger</artifactId>
 
   <properties>
-    <spring-fox.version>2.9.2</spring-fox.version>
+
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
-      <version>${spring-fox.version}</version>
     </dependency>
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
-      <version>${spring-fox.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-spring-webmvc</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-core</artifactId>
-      <version>1.5.22</version>
     </dependency>
     <dependency>
       <groupId>com.huaweicloud</groupId>
